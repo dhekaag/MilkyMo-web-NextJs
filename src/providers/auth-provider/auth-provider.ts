@@ -1,29 +1,32 @@
 "use client";
 
 import { AuthBindings } from "@refinedev/core";
+import axios from "axios";
+
+import { API_URL } from "@utils/constanst";
+import { log } from "console";
 import Cookies from "js-cookie";
 
-const mockUsers = [
-  {
-    name: "John Doe",
-    email: "johndoe@mail.com",
-    roles: ["admin"],
-    avatar: "https://i.pravatar.cc/150?img=1",
-  },
-  {
-    name: "Jane Doe",
-    email: "janedoe@mail.com",
-    roles: ["editor"],
-    avatar: "https://i.pravatar.cc/150?img=1",
-  },
-];
-
 export const authProvider: AuthBindings = {
-  login: async ({ email, username, password, remember }) => {
+  login: async ({ userId, password, remember }) => {
     // Suppose we actually send a request to the back end here.
-    const user = mockUsers[0];
+    let user: string | undefined = undefined;
+    let responseStatus = "";
+    let id_admin = userId;
+    const data = { id_admin, password };
+    try {
+      const response = await axios.post(`${API_URL}admins/login`, data);
+      user = userId;
+      // if(response.status === 200) {
+      // const response = await axios.get(`${API_URL}admins/${}`, data);
+      // }
 
-    if (user) {
+      responseStatus = response.status.toString();
+    } catch (error) {
+      console.error(error);
+    }
+
+    if (user !== undefined) {
       Cookies.set("auth", JSON.stringify(user), {
         expires: 30, // 30 days
         path: "/",
@@ -37,8 +40,8 @@ export const authProvider: AuthBindings = {
     return {
       success: false,
       error: {
-        name: "LoginError",
-        message: "Invalid username or password",
+        name: "Invalid username or password",
+        message: "Error",
       },
     };
   },
