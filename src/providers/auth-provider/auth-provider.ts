@@ -40,8 +40,8 @@ export const authProvider: AuthBindings = {
     return {
       success: false,
       error: {
-        name: "Invalid username or password",
-        message: "Error",
+        name: "id admin atau password salah",
+        message: "Gagal",
       },
     };
   },

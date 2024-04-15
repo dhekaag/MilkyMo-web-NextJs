@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title: SITE_TITLE,
   description: SITE_DESC,
   icons: {
-    icon: "./splash1024.png",
+    icon: "/splash1024.png",
   },
 };
 

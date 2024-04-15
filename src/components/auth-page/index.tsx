@@ -89,7 +89,7 @@ export const AuthPage: React.FC = (props: AuthPageProps) => {
                         fontSize: "12px",
                       }}
                     >
-                      Remember me
+                      Ingat saya
                     </Checkbox>
                   </Form.Item>
 
@@ -100,7 +100,7 @@ export const AuthPage: React.FC = (props: AuthPageProps) => {
                     }}
                     href="#"
                   >
-                    Forgot password?
+                    Lupa password?
                   </a>
                 </div>
                 <Button type="primary" size="large" htmlType="submit" block>
