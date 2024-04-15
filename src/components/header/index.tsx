@@ -26,7 +26,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
   sticky,
 }) => {
   const { token } = useToken();
-  const { data: user } = useGetIdentity<IUser>();
+  const { data: user } = useGetIdentity<string>();
   const { mode, setMode } = useContext(ColorModeContext);
 
   const headerStyles: React.CSSProperties = {
@@ -53,9 +53,9 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
           onChange={() => setMode(mode === "light" ? "dark" : "light")}
           defaultChecked={mode === "dark"}
         />
-        {user?.name && (
+        {user && (
           <Space style={{ marginLeft: "8px" }} size="middle">
-            {user?.name && <Text strong>{user.name}</Text>}
+            {user && <Text strong>{user}</Text>}
             {/* {user?.avatar && <Avatar src={user?.avatar} alt={user?.name} />} */}
           </Space>
         )}

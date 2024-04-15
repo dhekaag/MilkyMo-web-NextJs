@@ -77,8 +77,8 @@ export const authProvider: AuthBindings = {
   getIdentity: async () => {
     const auth = Cookies.get("auth");
     if (auth) {
-      const parsedUser = JSON.parse(auth);
-      return parsedUser;
+      // console.log(auth);
+      return auth;
     }
     return null;
   },

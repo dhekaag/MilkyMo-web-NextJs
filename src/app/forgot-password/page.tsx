@@ -9,7 +9,7 @@ export default async function ForgotPassword() {
     redirect(data?.redirectTo || "/");
   }
 
-  return <AuthPage type="forgotPassword" />;
+  return <AuthPage />;
 }
 
 async function getData() {
