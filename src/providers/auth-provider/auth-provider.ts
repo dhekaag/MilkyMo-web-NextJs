@@ -3,22 +3,21 @@
 import { AuthBindings } from "@refinedev/core";
 import axios from "axios";
 
-import { API_URL } from "@utils/constanst";
-import { log } from "console";
 import Cookies from "js-cookie";
+import { loginRequest } from "./login-provider.server";
 
 export const authProvider: AuthBindings = {
   login: async ({ userId, password, remember }) => {
     // Suppose we actually send a request to the back end here.
     let user: string | undefined = undefined;
-    let responseStatus = "";
-    let id_admin = userId;
-    const data = { id_admin, password };
+    // let responseStatus = "";
+    // let id_admin = userId;
+    // const data = { id_admin, password };
     try {
-      const response = await axios.post(`${API_URL}admins/login`, data);
-      user = userId;
-
-      responseStatus = response.status.toString();
+      const res = await loginRequest(userId, password);
+      if (res) {
+        user = userId;
+      }
     } catch (error) {
       console.error(error);
     }
