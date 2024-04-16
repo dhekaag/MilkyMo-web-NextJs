@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+
 import { useLogin } from "@refinedev/core";
 import {
   Row,
@@ -11,10 +11,10 @@ import {
   Input,
   Button,
   Checkbox,
+  Spin,
 } from "antd";
 import type { AuthPageProps } from "@refinedev/core";
 import "./styles.css";
-import { FormProps } from "antd/lib";
 
 const { Text, Title } = Typography;
 
@@ -27,13 +27,15 @@ export interface ILoginForm {
 export const AuthPage: React.FC = (props: AuthPageProps) => {
   const [form] = Form.useForm<ILoginForm>();
 
-  const { mutate: login } = useLogin<ILoginForm>();
+  // const [isLoading, setIsLoading] = useState(false); // State untuk menentukan apakah sedang dalam proses loading atau tidak
+  const { mutate: login, isLoading } = useLogin<ILoginForm>();
 
   const CardTitle = (
     <Title level={3} className="title">
       MilkyMo
     </Title>
   );
+
   return (
     <AntdLayout className="layout">
       <Row
@@ -48,13 +50,11 @@ export const AuthPage: React.FC = (props: AuthPageProps) => {
             <div className="imageContainer">
               {/* <img src="./refine.svg" alt="Refine Logo" /> */}
             </div>
-            <Card title={CardTitle} headStyle={{ borderBottom: 0 }}>
-              <Form<ILoginForm>
+            <Card title={CardTitle} styles={{ header: { borderBottom: 0 } }}>
+              <Form
                 layout="vertical"
                 form={form}
-                onFinish={(values) => {
-                  login(values);
-                }}
+                onFinish={(values) => login(values)}
                 requiredMark={false}
                 initialValues={{
                   remember: false,
@@ -103,9 +103,11 @@ export const AuthPage: React.FC = (props: AuthPageProps) => {
                     Lupa password?
                   </a>
                 </div>
-                <Button type="primary" size="large" htmlType="submit" block>
-                  MASUK
-                </Button>
+                <Spin spinning={isLoading}>
+                  <Button type="primary" size="large" htmlType="submit" block>
+                    MASUK
+                  </Button>
+                </Spin>
               </Form>
             </Card>
           </div>

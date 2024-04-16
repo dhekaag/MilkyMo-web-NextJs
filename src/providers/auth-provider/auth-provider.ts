@@ -17,9 +17,6 @@ export const authProvider: AuthBindings = {
     try {
       const response = await axios.post(`${API_URL}admins/login`, data);
       user = userId;
-      // if(response.status === 200) {
-      // const response = await axios.get(`${API_URL}admins/${}`, data);
-      // }
 
       responseStatus = response.status.toString();
     } catch (error) {
