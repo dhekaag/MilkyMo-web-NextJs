@@ -5,18 +5,17 @@ import axios from "axios";
 
 import Cookies from "js-cookie";
 import { loginRequest } from "./login-provider.server";
+import { IAdminInterface, fetchUserData } from "../data-provider/user-provider";
 
 export const authProvider: AuthBindings = {
   login: async ({ userId, password, remember }) => {
     // Suppose we actually send a request to the back end here.
-    let user: string | undefined = undefined;
-    // let responseStatus = "";
-    // let id_admin = userId;
-    // const data = { id_admin, password };
+    let user: IAdminInterface | undefined = undefined;
     try {
       const res = await loginRequest(userId, password);
       if (res) {
-        user = userId;
+        const adminData = await fetchUserData(userId);
+        user = adminData;
       }
     } catch (error) {
       console.error(error);
@@ -37,12 +36,14 @@ export const authProvider: AuthBindings = {
       success: false,
       error: {
         name: "id admin atau password salah",
-        message: "Gagal",
+        message: "Login gagal",
       },
     };
   },
   logout: async () => {
     Cookies.remove("auth", { path: "/" });
+    Cookies.remove("accessToken");
+    Cookies.remove("refreshToken");
     return {
       success: true,
       redirectTo: "/login",
@@ -73,8 +74,8 @@ export const authProvider: AuthBindings = {
   getIdentity: async () => {
     const auth = Cookies.get("auth");
     if (auth) {
-      // console.log(auth);
-      return auth;
+      const authData: IAdminInterface = JSON.parse(auth);
+      return authData;
     }
     return null;
   },

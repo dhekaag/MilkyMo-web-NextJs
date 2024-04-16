@@ -1,12 +1,13 @@
 "use client";
 
-import Icon from "@ant-design/icons/lib/components/Icon";
 import Image from "next/image";
 import { Header } from "@components/header";
 import { ThemedLayoutV2, ThemedSiderV2 } from "@refinedev/antd";
 import React from "react";
+import { Typography } from "antd";
 import MilkymoIcon from "@app/splash1024.png";
 
+const { Title } = Typography;
 export const ThemedLayout = ({ children }: React.PropsWithChildren) => {
   return (
     <ThemedLayoutV2

@@ -1,6 +1,7 @@
 "use client";
 
 import { ColorModeContext } from "@contexts/color-mode";
+import { IAdminInterface } from "@providers/data-provider/user-provider";
 import type { RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
 import { useGetIdentity } from "@refinedev/core";
 import {
@@ -26,7 +27,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
   sticky,
 }) => {
   const { token } = useToken();
-  const { data: user } = useGetIdentity<string>();
+  const { data: user } = useGetIdentity<IAdminInterface>();
   const { mode, setMode } = useContext(ColorModeContext);
 
   const headerStyles: React.CSSProperties = {
@@ -55,7 +56,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
         />
         {user && (
           <Space style={{ marginLeft: "8px" }} size="middle">
-            {user && <Text strong>{user}</Text>}
+            {user && <Text strong>{user.name}</Text>}
             {/* {user?.avatar && <Avatar src={user?.avatar} alt={user?.name} />} */}
           </Space>
         )}
