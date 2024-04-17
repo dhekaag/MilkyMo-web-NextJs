@@ -4,8 +4,10 @@ import { Create, useForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
 import React from "react";
 
-export default function CategoryCreate() {
-  const { formProps, saveButtonProps } = useForm({ resource: "users/create" });
+export default function BuatAkunPeternak() {
+  const { formProps, saveButtonProps } = useForm({
+    resource: "users/create",
+  });
 
   return (
     <Create saveButtonProps={saveButtonProps} title="Buat Akun Peternak">
@@ -61,8 +63,13 @@ export default function CategoryCreate() {
         <Form.Item label={"EMAIL"} name={["email"]} rules={[{}]}>
           <Input />
         </Form.Item>
-        <Form.Item label={"PASSWORD"} name={["password"]} rules={[{}]}>
-          <Input defaultValue={"member"} />
+        <Form.Item
+          label={"PASSWORD"}
+          name={["password"]}
+          rules={[{}]}
+          initialValue={"member"}
+        >
+          <Input />
         </Form.Item>
       </Form>
     </Create>

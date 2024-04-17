@@ -36,14 +36,15 @@ export default function DaftarPeternak() {
         <Table.Column dataIndex="phone_number" title={"NO. TELEPON"} />
         <Table.Column
           title={"Lainnya"}
-          render={(_, record: BaseRecord) => (
+          dataIndex="id_peternak"
+          render={(id_peternak) => (
             <Space>
-              <EditButton hideText size="small" recordItemId={record.id} />
-              <ShowButton hideText size="small" recordItemId={record.id} />
+              <EditButton hideText size="small" recordItemId={id_peternak} />
+              <ShowButton hideText size="small" recordItemId={id_peternak} />
               <DeleteButton
                 hideText
                 size="small"
-                recordItemId={record.id}
+                recordItemId={id_peternak}
                 resource="users"
               />
             </Space>
