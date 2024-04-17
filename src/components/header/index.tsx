@@ -1,7 +1,7 @@
 "use client";
 
 import { ColorModeContext } from "@contexts/color-mode";
-import { IAdminInterface } from "@providers/data-provider/user-provider";
+import { IAdminInterface } from "@providers/data-provider/admin-provider";
 import type { RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
 import { useGetIdentity } from "@refinedev/core";
 import {

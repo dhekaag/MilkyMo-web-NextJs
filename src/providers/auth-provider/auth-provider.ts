@@ -5,12 +5,16 @@ import axios from "axios";
 
 import Cookies from "js-cookie";
 import { loginRequest } from "./login-provider.server";
-import { IAdminInterface, fetchUserData } from "../data-provider/user-provider";
+import {
+  dataPeternak,
+  fetchUserData,
+} from "../data-provider/admin-provider";
+
 
 export const authProvider: AuthBindings = {
   login: async ({ userId, password, remember }) => {
     // Suppose we actually send a request to the back end here.
-    let user: IAdminInterface | undefined = undefined;
+    let user: dataPeternak | undefined = undefined;
     try {
       const res = await loginRequest(userId, password);
       if (res) {
@@ -74,7 +78,7 @@ export const authProvider: AuthBindings = {
   getIdentity: async () => {
     const auth = Cookies.get("auth");
     if (auth) {
-      const authData: IAdminInterface = JSON.parse(auth);
+      const authData: dataPeternak = JSON.parse(auth);
       return authData;
     }
     return null;

@@ -1,8 +1,5 @@
 "use client";
+import { PUBLIC_API_URL } from "@utils/constanst";
+import { dataProviderUtil } from "./data.provider";
 
-import dataProviderSimpleRest from "@refinedev/simple-rest";
-import axios from "axios";
-
-const API_URL = "https://api.fake-rest.refine.dev";
-
-export const dataProvider = dataProviderSimpleRest(API_URL);
+export const dataProvider = dataProviderUtil(PUBLIC_API_URL);
