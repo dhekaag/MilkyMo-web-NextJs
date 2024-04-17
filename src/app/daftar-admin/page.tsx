@@ -25,7 +25,7 @@ export default function DaftarAdmin() {
 
   return (
     <List
-      createButtonProps={{ children: "Buat Akun Peternak" }}
+      createButtonProps={{ children: "Buat Akun Admin" }}
       title="Daftar Admin"
     >
       <Table {...tableProps} rowKey="id_admin">

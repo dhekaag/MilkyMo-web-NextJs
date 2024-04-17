@@ -78,11 +78,9 @@ export const dataProviderUtil = (apiUrl: string): DataProvider => ({
     };
   },
   deleteOne: async ({ resource, id, variables }) => {
-    const url = `${apiUrl}/${resource}/${id}`;
+    const url = `${apiUrl}/${resource}/delete/${id}`;
 
-    const { data } = await axiosInstance.delete(url, {
-      data: variables,
-    });
+    const { data } = await axiosInstance.delete(url);
 
     return {
       data,

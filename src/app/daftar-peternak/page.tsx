@@ -29,11 +29,26 @@ export default function DaftarPeternak() {
       title="Daftar Peternak"
       createButtonProps={{ children: "Buat Akun Peternak" }}
     >
-      <Table {...tableProps} rowKey="id_peternak">
+      <Table {...tableProps} rowKey="id">
         <Table.Column dataIndex="id_peternak" title={"ID PETERNAK"} />
         <Table.Column dataIndex="name" title={"NAMA"} />
         <Table.Column dataIndex="email" title={"EMAIL"} />
         <Table.Column dataIndex="phone_number" title={"NO. TELEPON"} />
+        <Table.Column
+          title={"Lainnya"}
+          render={(_, record: BaseRecord) => (
+            <Space>
+              <EditButton hideText size="small" recordItemId={record.id} />
+              <ShowButton hideText size="small" recordItemId={record.id} />
+              <DeleteButton
+                hideText
+                size="small"
+                recordItemId={record.id}
+                resource="users"
+              />
+            </Space>
+          )}
+        />
       </Table>
     </List>
   );

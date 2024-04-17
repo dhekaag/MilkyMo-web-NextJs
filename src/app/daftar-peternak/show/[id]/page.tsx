@@ -7,7 +7,7 @@ import React from "react";
 
 const { Title } = Typography;
 
-export default function CategoryShow() {
+export default function AkunPeternak() {
   const { queryResult } = useShow({});
   const { data, isLoading } = queryResult;
 
