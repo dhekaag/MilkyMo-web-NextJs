@@ -1,15 +1,9 @@
 "use client";
 
 import { AuthBindings } from "@refinedev/core";
-import axios from "axios";
-
 import Cookies from "js-cookie";
 import { loginRequest } from "./login-provider.server";
-import {
-  dataPeternak,
-  fetchUserData,
-} from "../data-provider/admin-provider";
-
+import { dataPeternak, fetchUserData } from "../data-provider/admin-provider";
 
 export const authProvider: AuthBindings = {
   login: async ({ userId, password, remember }) => {
@@ -55,7 +49,8 @@ export const authProvider: AuthBindings = {
   },
   check: async () => {
     const auth = Cookies.get("auth");
-    if (auth) {
+    const token = Cookies.get("refreshToken");
+    if (auth || token) {
       return {
         authenticated: true,
       };

@@ -14,8 +14,13 @@ export default function EditDaftarPeternak() {
   return (
     <Edit saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
-        <Form.Item label={"ID PETERNAK"} name={["id_peternak"]} rules={[{}]}>
-          <Input defaultValue={id} readOnly />
+        <Form.Item
+          label={"ID PETERNAK"}
+          name={["id_peternak"]}
+          rules={[{}]}
+          initialValue={id}
+        >
+          <Input readOnly />
         </Form.Item>
         <Form.Item label={"NAMA"} name={["name"]} rules={[{}]}>
           <Input />
@@ -30,7 +35,7 @@ export default function EditDaftarPeternak() {
           <Input />
         </Form.Item>
         <Form.Item label={"PASSWORD"} name={["password"]} rules={[{}]}>
-          <Input defaultValue={"member"} />
+          <Input />
         </Form.Item>
       </Form>
     </Edit>
