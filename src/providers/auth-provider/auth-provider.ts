@@ -24,6 +24,7 @@ export const authProvider: AuthBindings = {
         expires: 30, // 30 days
         path: "/",
       });
+      console.log("login fetch success in auth provider");
       return {
         success: true,
         redirectTo: "/",
@@ -40,8 +41,8 @@ export const authProvider: AuthBindings = {
   },
   logout: async () => {
     Cookies.remove("auth", { path: "/" });
-    Cookies.remove("accessToken");
-    Cookies.remove("refreshToken");
+    Cookies.remove("accessToken", { path: "/" });
+    Cookies.remove("refreshToken", { path: "/" });
     return {
       success: true,
       redirectTo: "/login",
@@ -79,12 +80,12 @@ export const authProvider: AuthBindings = {
     return null;
   },
   onError: async (error) => {
-    if (error.response?.status === 401) {
+    if (error.response?.status === 401 || error.response?.status === 403) {
       return {
         logout: true,
       };
     }
 
-    return { error };
+    return { error};
   },
 };
