@@ -90,9 +90,9 @@ export const dataProviderUtil = (apiUrl: string): DataProvider => ({
     const url = `${apiUrl}/${resource}/${id}`;
 
     const { data } = await axiosInstance.get(url);
-
+    const resData = data.data;
     return {
-      data,
+      data: resData,
     };
   },
   getApiUrl: () => apiUrl,

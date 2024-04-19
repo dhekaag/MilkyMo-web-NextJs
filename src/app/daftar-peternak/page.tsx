@@ -1,6 +1,5 @@
 "use client";
 
-import { IPeternakInterface } from "@providers/data-provider/peternak-provider";
 import {
   DateField,
   DeleteButton,

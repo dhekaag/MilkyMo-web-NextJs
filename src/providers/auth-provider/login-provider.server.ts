@@ -16,7 +16,7 @@ export const loginRequest = async (id_admin: string, password: string) => {
       id_admin,
       password,
     });
-    const accessToken = response.data.data.accesToken;
+    const accessToken = response.data.data.accessToken;
     const refreshToken = response.data.data.refreshToken;
 
     if (response.status === 200) {

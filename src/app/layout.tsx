@@ -12,6 +12,15 @@ import { ColorModeContextProvider } from "@contexts/color-mode";
 import { authProvider } from "@providers/auth-provider";
 import { SITE_DESC, SITE_TITLE } from "@utils/constanst";
 import { dataProvider } from "@providers/data-provider";
+import {
+  CalendarOutlined,
+  ContainerOutlined,
+  CrownOutlined,
+  DashboardOutlined,
+  ProjectOutlined,
+  ShopOutlined,
+  TeamOutlined,
+} from "@ant-design/icons";
 
 export const metadata: Metadata = {
   title: SITE_TITLE,
@@ -45,6 +54,18 @@ export default function RootLayout({
                     authProvider={authProvider}
                     resources={[
                       {
+                        name: "Penyetoran Susu",
+                        list: "/penyetoran-susu",
+                        create: "/penyetoran-susu/create",
+                        // edit: "/blog-posts/edit/:id",
+                        // show: "/blog-posts/show/:id",
+                        meta: {
+                          label: "Penyetoran Susu",
+                          icon: <DashboardOutlined />,
+                          canDelete: true,
+                        },
+                      },
+                      {
                         name: "Daftar Peternak",
                         list: "/daftar-peternak",
                         create: "/daftar-peternak/create",
@@ -52,6 +73,8 @@ export default function RootLayout({
                         show: "/daftar-peternak/show/:id",
                         meta: {
                           canDelete: true,
+                          label: "Daftar Peternak",
+                          icon: <TeamOutlined />,
                         },
                       },
                       {
@@ -61,45 +84,15 @@ export default function RootLayout({
                         edit: "/daftar-admin/edit/:id",
                         show: "/daftar-admin/show/:id",
                         meta: {
+                          label: "Daftar Admin",
+                          icon: <TeamOutlined />,
                           canDelete: true,
                         },
                       },
-                      {
-                        name: "Penyetoran Susu",
-                        list: "/penyetoran-susu",
-                        // create: "/blog-posts/create",
-                        // edit: "/blog-posts/edit/:id",
-                        // show: "/blog-posts/show/:id",
-                        // meta: {
-                        //   canDelete: true,
-                        // },
-                      },
-
-                      // {
-                      //   name: "blog_posts",
-                      //   list: "/blog-posts",
-                      //   create: "/blog-posts/create",
-                      //   edit: "/blog-posts/edit/:id",
-                      //   show: "/blog-posts/show/:id",
-                      //   meta: {
-                      //     canDelete: true,
-                      //   },
-                      // },
-                      // {
-                      //   name: "categories",
-                      //   list: "/categories",
-                      //   create: "/categories/create",
-                      //   edit: "/categories/edit/:id",
-                      //   show: "/categories/show/:id",
-                      //   meta: {
-                      //     canDelete: true,
-                      //   },
-                      // },
                     ]}
                     options={{
                       // syncWithLocation: true,
                       warnWhenUnsavedChanges: true,
-                      useNewQueryKeys: true,
                       projectId: "DVmwvl-UBqF04-8TSpeC",
                     }}
                   >

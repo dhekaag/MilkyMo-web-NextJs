@@ -1,12 +1,12 @@
-export interface IAdminInterface {
+export interface ITransactionsInterface {
   status: boolean;
   statusCode: number;
   count: number;
   total: number;
-  data: DataAdmin[];
+  data: IDataTransactionsInterface[];
 }
 
-export interface DataAdmin {
+export interface IDataTransactionsInterface {
   _id: string;
   transaction_id: string;
   user_id: string;

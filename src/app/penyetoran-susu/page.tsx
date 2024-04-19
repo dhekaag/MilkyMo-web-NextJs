@@ -1,5 +1,6 @@
 "use client";
 
+import moment from "moment";
 import {
   DateField,
   DeleteButton,
@@ -9,64 +10,86 @@ import {
   ShowButton,
   useTable,
 } from "@refinedev/antd";
-import { BaseRecord, useMany } from "@refinedev/core";
-import { Space, Table } from "antd";
+import { BaseRecord, HttpError, useMany } from "@refinedev/core";
+import { Space, Table, Typography } from "antd";
 import React from "react";
+import { log } from "console";
 
-export default function BlogPostList() {
-  const { tableProps } = useTable({
-    syncWithLocation: true,
-  });
+const { Text } = Typography;
 
-  const { data: categoryData, isLoading: categoryIsLoading } = useMany({
-    resource: "categories",
-    ids:
-      tableProps?.dataSource
-        ?.map((item) => item?.category?.id)
-        .filter(Boolean) ?? [],
-    queryOptions: {
-      enabled: !!tableProps?.dataSource,
+export default function PenyetoranSusu() {
+  const { tableQueryResult, tableProps } = useTable({
+    resource: "transactions",
+    pagination: {
+      mode: "off",
     },
   });
+  const transactions = tableQueryResult.data?.data;
+  console.log(transactions);
+
+  // Menyimpan admin_id dari setiap transaksi dalam sebuah array
+  const adminIds = transactions?.map(({ admin_id }) => admin_id) || [];
+
+  const { data: adminData, isLoading: dataIsLoading } = useMany({
+    resource: "admins",
+    ids: adminIds, // Menggunakan adminIds sebagai nilai untuk properti ids
+  });
+
+  if (dataIsLoading) {
+    console.log("Loading admin fetch data...");
+  }
+  if (adminData) {
+    console.log("admin data : " + adminData?.data);
+  }
 
   return (
-    <List>
+    <List
+      title="Penyetoran susu"
+      createButtonProps={{ children: "Buat Transaksi" }}
+    >
       <Table {...tableProps} rowKey="id">
-        <Table.Column dataIndex="id" title={"ID"} />
-        <Table.Column dataIndex="title" title={"Title"} />
+        <Table.Column dataIndex="user_id" title={"ID PETERNAK"} />
+        <Table.Column dataIndex="user_name" title={"NAMA PETERNAK"} />
+        <Table.Column dataIndex="milk_volume" title={"VOLUME SUSU"} />
+
         <Table.Column
-          dataIndex="content"
-          title={"Content"}
-          render={(value: any) => {
-            if (!value) return "-";
-            return <MarkdownField value={value.slice(0, 80) + "..."} />;
-          }}
+          dataIndex="createdAt"
+          title={"TANGGAL"}
+          render={(createdAt) => moment(createdAt).format("DD-MM-YYYY")}
         />
         <Table.Column
-          dataIndex={"category"}
-          title={"Category"}
+          dataIndex="createdAt"
+          title={"JAM"}
+          render={(createdAt) => moment(createdAt).format("HH:mm")}
+        />
+        <Table.Column dataIndex="time" title={"WAKTU"} />
+        <Table.Column
+          dataIndex="admin_id"
+          title={"NAMA PENGURUS"}
           render={(value) =>
-            categoryIsLoading ? (
+            dataIsLoading ? (
               <>Loading...</>
             ) : (
-              categoryData?.data?.find((item) => item.id === value?.id)?.title
+              adminData?.data?.find((data) => {
+                console.log(data.id_admin);
+                return data.id_admin === value;
+              })?.name
             )
           }
         />
-        <Table.Column dataIndex="status" title={"Status"} />
         <Table.Column
-          dataIndex={["createdAt"]}
-          title={"Created at"}
-          render={(value: any) => <DateField value={value} />}
-        />
-        <Table.Column
-          title={"Actions"}
-          dataIndex="actions"
-          render={(_, record: BaseRecord) => (
+          title={"Lainnya"}
+          dataIndex="user_id"
+          render={(id_peternak) => (
             <Space>
-              <EditButton hideText size="small" recordItemId={record.id} />
-              <ShowButton hideText size="small" recordItemId={record.id} />
-              <DeleteButton hideText size="small" recordItemId={record.id} />
+              <EditButton hideText size="small" recordItemId={id_peternak} />
+              <ShowButton hideText size="small" recordItemId={id_peternak} />
+              <DeleteButton
+                hideText
+                size="small"
+                recordItemId={id_peternak}
+                resource="users"
+              />
             </Space>
           )}
         />
