@@ -62,7 +62,7 @@ export default function RootLayout({
                         meta: {
                           label: "Penyetoran Susu",
                           icon: <DashboardOutlined />,
-                          canDelete: true,
+                          canDelete: false,
                         },
                       },
                       {
@@ -74,7 +74,7 @@ export default function RootLayout({
                         meta: {
                           label: "Stok Susu",
                           icon: <DashboardOutlined />,
-                          canDelete: true,
+                          canDelete: false,
                         },
                       },
                       {

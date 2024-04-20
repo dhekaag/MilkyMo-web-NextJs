@@ -118,12 +118,6 @@ export default function PenyetoranSusu() {
             <Space>
               <EditButton hideText size="small" recordItemId={id_peternak} />
               <ShowButton hideText size="small" recordItemId={id_peternak} />
-              <DeleteButton
-                hideText
-                size="small"
-                recordItemId={id_peternak}
-                resource="users"
-              />
             </Space>
           )}
         />
