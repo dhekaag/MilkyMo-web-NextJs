@@ -19,43 +19,43 @@ export const TotalCountCard: React.FC<{
 }> = ({ resource, isLoading, totalCount }) => {
   const { primaryColor, secondaryColor, icon, title } = variants[resource];
 
-  const config: AreaConfig = {
-    className: styles.area,
-    appendPadding: [1, 0, 0, 0],
-    padding: 0,
-    syncViewPadding: true,
-    data: variants[resource].data,
-    autoFit: true,
-    tooltip: false,
-    animation: false,
-    xField: "index",
-    yField: "value",
-    xAxis: false,
-    yAxis: {
-      tickCount: 12,
-      label: {
-        style: {
-          fill: "transparent",
-        },
-      },
-      grid: {
-        line: {
-          style: {
-            stroke: "transparent",
-          },
-        },
-      },
-    },
-    smooth: true,
-    areaStyle: () => {
-      return {
-        fill: `l(270) 0:#fff 0.2:${secondaryColor} 1:${primaryColor}`,
-      };
-    },
-    line: {
-      color: primaryColor,
-    },
-  };
+  // const config: AreaConfig = {
+  //   className: styles.area,
+  //   appendPadding: [1, 0, 0, 0],
+  //   padding: 0,
+  //   syncViewPadding: true,
+  //   data: variants[resource].data,
+  //   autoFit: true,
+  //   tooltip: false,
+  //   animation: false,
+  //   xField: "index",
+  //   yField: "value",
+  //   xAxis: false,
+  //   yAxis: {
+  //     tickCount: 12,
+  //     label: {
+  //       style: {
+  //         fill: "transparent",
+  //       },
+  //     },
+  //     grid: {
+  //       line: {
+  //         style: {
+  //           stroke: "transparent",
+  //         },
+  //       },
+  //     },
+  //   },
+  //   smooth: true,
+  //   areaStyle: () => {
+  //     return {
+  //       fill: `l(270) 0:#fff 0.2:${secondaryColor} 1:${primaryColor}`,
+  //     };
+  //   },
+  //   line: {
+  //     color: primaryColor,
+  //   },
+  // };
 
   return (
     <Card
