@@ -66,6 +66,18 @@ export default function RootLayout({
                         },
                       },
                       {
+                        name: "Stok dan Penjualan Susu",
+                        list: "/stok-penjualan-susu",
+                        create: "/stok-penjualan-susu/create",
+                        // edit: "/blog-posts/edit/:id",
+                        // show: "/blog-posts/show/:id",
+                        meta: {
+                          label: "Stok Susu",
+                          icon: <DashboardOutlined />,
+                          canDelete: true,
+                        },
+                      },
+                      {
                         name: "Daftar Peternak",
                         list: "/daftar-peternak",
                         create: "/daftar-peternak/create",

@@ -25,6 +25,7 @@ export default function PenyetoranSusu() {
       mode: "off",
     },
   });
+
   const transactions = tableQueryResult.data?.data || [];
   const totalVolume = transactions
     .reduce((total, transaction) => total + (transaction.milk_volume || 0), 0)
@@ -54,10 +55,10 @@ export default function PenyetoranSusu() {
 
   return (
     <List
-      title="Penyetoran susu"
+      title="Stok Dan Penjualan Susu"
       createButtonProps={{ children: "Buat Transaksi" }}
     >
-      <Row gutter={[32, 32]}>
+      {/* <Row gutter={[32, 32]}>
         <Col xs={24} sm={24} xl={8}>
           <TotalCountCard
             resource="TODAY"
@@ -76,26 +77,29 @@ export default function PenyetoranSusu() {
             totalCount={parseFloat(totalVolume)}
           />
         </Col>
-      </Row>
+      </Row> */}
       <Table {...tableProps} rowKey="id">
-        <Table.Column dataIndex="user_id" title={"ID PETERNAK"} />
-        <Table.Column dataIndex="user_name" title={"NAMA PETERNAK"} />
-        <Table.Column dataIndex="milk_volume" title={"VOLUME SUSU"} />
-
         <Table.Column
           dataIndex="createdAt"
           title={"TANGGAL"}
           render={(createdAt) => moment(createdAt).format("DD-MM-YYYY")}
         />
+        <Table.Column dataIndex="user_name" title={"STOK AWAL"} />
+        <Table.Column dataIndex="milk_volume" title={"PENERIMAAN PAGI"} />
+
         <Table.Column
           dataIndex="createdAt"
-          title={"JAM"}
+          title={"PENJUALAN"}
+          render={(createdAt) => moment(createdAt).format("DD-MM-YYYY")}
+        />
+        <Table.Column
+          dataIndex="createdAt"
+          title={"PENERIMAAN SORE"}
           render={(createdAt) => moment(createdAt).format("HH:mm")}
         />
-        <Table.Column dataIndex="time" title={"WAKTU"} />
         <Table.Column
           dataIndex="admin_id"
-          title={"NAMA PENGURUS"}
+          title={"STOK AKHIR"}
           render={(value) =>
             dataIsLoading ? (
               <>Loading...</>
