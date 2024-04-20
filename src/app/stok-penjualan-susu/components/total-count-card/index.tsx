@@ -10,7 +10,7 @@ import styles from "./index.module.css";
 
 const Area = React.lazy(() => import("@ant-design/plots/es/components/area"));
 
-type Type = "STOK AWAL" | "PENERIMAAN PAGI" | "PENJUALAN | "PENERIMAAN SORE" | "STOK AKHIR";
+type Type = "TOTAL" | "TODAY" | "PENJUALAN";
 
 export const TotalCountCard: React.FC<{
   resource: Type;
