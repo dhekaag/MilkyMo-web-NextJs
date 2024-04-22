@@ -1,6 +1,14 @@
 import React, { FC, PropsWithChildren, Suspense } from "react";
 
-import { AuditOutlined, ShopOutlined, TeamOutlined } from "@ant-design/icons";
+import {
+  AuditOutlined,
+  ShopOutlined,
+  TeamOutlined,
+  SunFilled,
+  SunOutlined,
+  MoonFilled,
+  MoonOutlined,
+} from "@ant-design/icons";
 import { AreaConfig } from "@ant-design/plots";
 import { Card, Skeleton } from "antd";
 
@@ -10,7 +18,7 @@ import styles from "./index.module.css";
 
 const Area = React.lazy(() => import("@ant-design/plots/es/components/area"));
 
-type Type = "TOTAL" | "TODAY" | "PENJUALAN";
+type Type = "MORNING" | "AFTERNOON" | "TOTAL";
 
 export const TotalCountCard: React.FC<{
   resource: Type;
@@ -142,12 +150,12 @@ const variants: {
     data: { index: string; value: number }[];
   };
 } = {
-  TOTAL: {
+  MORNING: {
     primaryColor: "#1677FF",
     secondaryColor: "#BAE0FF",
     icon: (
       <IconWrapper color="#E6F4FF">
-        <ShopOutlined
+        <SunOutlined
           className="md"
           style={{
             color: "#1677FF",
@@ -155,7 +163,7 @@ const variants: {
         />
       </IconWrapper>
     ),
-    title: "Total",
+    title: "Penerimaan Pagi",
     data: [
       {
         index: "1",
@@ -179,20 +187,20 @@ const variants: {
       },
     ],
   },
-  TODAY: {
-    primaryColor: "#52C41A",
+  AFTERNOON: {
+    primaryColor: "#E0C21B",
     secondaryColor: "#D9F7BE",
     icon: (
-      <IconWrapper color="#F6FFED">
-        <TeamOutlined
+      <IconWrapper color="#FFF7ED">
+        <MoonOutlined
           className="md"
           style={{
-            color: "#52C41A",
+            color: "#CBB829",
           }}
         />
       </IconWrapper>
     ),
-    title: "Penyetoran Hari Ini",
+    title: "Penerimaan Sore",
     data: [
       {
         index: "1",
@@ -220,20 +228,20 @@ const variants: {
       },
     ],
   },
-  PENJUALAN: {
-    primaryColor: "#FA541C",
+  TOTAL: {
+    primaryColor: "#57FA1C",
     secondaryColor: "#FFD8BF",
     icon: (
-      <IconWrapper color="#FFF2E8">
+      <IconWrapper color="#EEFFE8">
         <AuditOutlined
           className="md"
           style={{
-            color: "#FA541C",
+            color: "#45B726",
           }}
         />
       </IconWrapper>
     ),
-    title: "Penjualan",
+    title: "Total",
     data: [
       {
         index: "1",

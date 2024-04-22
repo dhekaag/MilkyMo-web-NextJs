@@ -1,3 +1,5 @@
+"use client";
+
 import { DataProvider, HttpError } from "@refinedev/core";
 import axios from "axios";
 import Cookies from "js-cookie";

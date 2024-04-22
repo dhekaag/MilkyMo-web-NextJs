@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import { Metadata, Viewport } from "next";
 import { cookies } from "next/headers";
 import React, { Suspense } from "react";
 import { Refine } from "@refinedev/core";
@@ -22,9 +22,35 @@ import {
   TeamOutlined,
 } from "@ant-design/icons";
 
+const APP_NAME = "MilkyMo";
+const APP_DEFAULT_TITLE = "MilkyM0";
+const APP_DESCRIPTION =
+  "MilkyMo web app for managing data on dairy farming products";
+
 export const metadata: Metadata = {
-  title: SITE_TITLE,
-  description: SITE_DESC,
+  applicationName: APP_NAME,
+  title: APP_DEFAULT_TITLE,
+  description: APP_DESCRIPTION,
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: APP_DEFAULT_TITLE,
+    // startUpImage: [],
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    siteName: APP_NAME,
+    description: APP_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary",
+    title: APP_DEFAULT_TITLE,
+    description: APP_DESCRIPTION,
+  },
   icons: {
     icon: "/splash1024.png",
   },

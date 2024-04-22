@@ -12,7 +12,7 @@ import {
 } from "@refinedev/antd";
 import { BaseRecord, HttpError, useMany } from "@refinedev/core";
 import { Space, Table, Typography, Row, Col } from "antd";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { TotalCountCard } from "./components/total-count-card";
 import { ITransactionsInterface } from "@providers/data-provider/transactions-provider";
 
@@ -25,17 +25,47 @@ export default function PenyetoranSusu() {
       mode: "off",
     },
   });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const transactions = tableQueryResult.data?.data || [];
   const totalVolume = transactions
     .reduce((total, transaction) => total + (transaction.milk_volume || 0), 0)
     .toFixed(2);
 
-  // Menghitung total volume transaksi hari ini
-  const today = moment().startOf("day");
-  const totalTodayVolume = transactions
-    .filter((transaction) => moment(transaction.createdAt).isSame(today, "day"))
-    .reduce((total, transaction) => total + (transaction.milk_volume || 0), 0)
-    .toFixed(2);
+  const [morningVolume, setMorningVolume] = useState(0);
+  const [afternoonVolume, setAfternoonVolume] = useState(0);
+
+  useEffect(() => {
+    const today = moment().startOf("day");
+    const morningStart = moment().startOf("day").hour(6); // Waktu awal pagi
+    const morningEnd = moment().startOf("day").hour(12); // Waktu akhir pagi
+    const afternoonStart = moment().startOf("day").hour(12); // Waktu awal sore
+    const afternoonEnd = moment().startOf("day").hour(18); // Waktu akhir sore
+
+    const morningTransactions = transactions.filter(
+      (transaction) =>
+        moment(transaction.createdAt).isSame(today, "day") &&
+        moment(transaction.createdAt).isBetween(morningStart, morningEnd)
+    );
+
+    const afternoonTransactions = transactions.filter(
+      (transaction) =>
+        moment(transaction.createdAt).isSame(today, "day") &&
+        moment(transaction.createdAt).isBetween(afternoonStart, afternoonEnd)
+    );
+
+    const morningTotalVolume = morningTransactions.reduce(
+      (total, transaction) => total + (transaction.milk_volume || 0),
+      0
+    );
+
+    const afternoonTotalVolume = afternoonTransactions.reduce(
+      (total, transaction) => total + (transaction.milk_volume || 0),
+      0
+    );
+
+    setMorningVolume(morningTotalVolume);
+    setAfternoonVolume(afternoonTotalVolume);
+  }, [transactions]);
 
   // Menyimpan admin_id dari setiap transaksi dalam sebuah array
   const adminIds = transactions?.map(({ admin_id }) => admin_id) || [];
@@ -45,39 +75,32 @@ export default function PenyetoranSusu() {
     ids: adminIds, // Menggunakan adminIds sebagai nilai untuk properti ids
   });
 
-  if (dataIsLoading) {
-    console.log("Loading admin fetch data...");
-  }
-  if (adminData) {
-    console.log("admin data : " + adminData?.data);
-  }
-
   return (
     <List
       title="Penyetoran susu"
       createButtonProps={{ children: "Buat Transaksi" }}
     >
       <Row gutter={[32, 32]}>
-        <Col xs={24} sm={24} xl={8}>
+        <Col xs={24} sm={8} xl={8}>
           <TotalCountCard
-            resource="TODAY"
-            totalCount={parseFloat(totalTodayVolume)}
+            resource="MORNING"
+            totalCount={parseFloat(morningVolume.toFixed(2))}
           />
         </Col>
-        <Col xs={24} sm={24} xl={8}>
+        <Col xs={24} sm={8} xl={8}>
+          <TotalCountCard
+            resource="AFTERNOON"
+            totalCount={parseFloat(afternoonVolume.toFixed(2))}
+          />
+        </Col>
+        <Col xs={24} sm={8} xl={8}>
           <TotalCountCard
             resource="TOTAL"
             totalCount={parseFloat(totalVolume)}
           />
         </Col>
-        <Col xs={24} sm={24} xl={8}>
-          <TotalCountCard
-            resource="PENJUALAN"
-            totalCount={parseFloat(totalVolume)}
-          />
-        </Col>
       </Row>
-      <Table {...tableProps} rowKey="id">
+      <Table {...tableProps} rowKey="id" style={{ marginTop: "32px" }}>
         <Table.Column dataIndex="user_id" title={"ID PETERNAK"} />
         <Table.Column dataIndex="user_name" title={"NAMA PETERNAK"} />
         <Table.Column dataIndex="milk_volume" title={"VOLUME SUSU"} />
