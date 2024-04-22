@@ -23,7 +23,7 @@ import {
 } from "@ant-design/icons";
 
 const APP_NAME = "MilkyMo";
-const APP_DEFAULT_TITLE = "MilkyM0";
+const APP_DEFAULT_TITLE = "MilkyMo";
 const APP_DESCRIPTION =
   "MilkyMo web app for managing data on dairy farming products";
 
@@ -44,11 +44,6 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: APP_NAME,
-    description: APP_DESCRIPTION,
-  },
-  twitter: {
-    card: "summary",
-    title: APP_DEFAULT_TITLE,
     description: APP_DESCRIPTION,
   },
   icons: {
