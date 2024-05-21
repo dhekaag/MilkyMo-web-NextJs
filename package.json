@@ -10,7 +10,8 @@
     "build": "refine build",
     "start": "refine start",
     "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
-    "refine": "refine"
+    "refine": "refine",
+    "pages:build": "npx @cloudflare/next-on-pages"
   },
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
