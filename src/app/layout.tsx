@@ -23,7 +23,8 @@ import {
 } from "@ant-design/icons";
 
 export const runtime = "edge";
-// export const dynamic = "force-static";
+export const dynamic = "force-static";
+
 const APP_NAME = "MilkyMo";
 const APP_DEFAULT_TITLE = "MilkyMo";
 const APP_DESCRIPTION =
