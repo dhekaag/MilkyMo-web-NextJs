@@ -11,6 +11,7 @@ import { Metadata } from "next";
 import { cookies } from "next/headers";
 import React, { Suspense } from "react";
 
+export const runtime = "edge";
 const APP_NAME = "MilkyMo";
 const APP_DEFAULT_TITLE = "MilkyMo";
 const APP_DESCRIPTION =
