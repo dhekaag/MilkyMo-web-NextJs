@@ -3,7 +3,7 @@
 import { DataProvider, HttpError } from "@refinedev/core";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { stringify } from "querystring";
+import { stringify } from "query-string";
 
 // Error handling with axios interceptors
 const axiosInstance = axios.create();
