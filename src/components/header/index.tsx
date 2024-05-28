@@ -1,6 +1,6 @@
 "use client";
 
-import { ColorModeContext } from "@contexts/color-mode";
+// import { ColorModeContext } from "@contexts/color-mode";
 import { dataPeternak } from "@providers/data-provider/admin-provider";
 import type { RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
 import { useGetIdentity } from "@refinedev/core";
@@ -28,7 +28,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
 }) => {
   const { token } = useToken();
   const { data: user } = useGetIdentity<dataPeternak>();
-  const { mode, setMode } = useContext(ColorModeContext);
+  // const { mode, setMode } = useContext(ColorModeContext);
 
   const headerStyles: React.CSSProperties = {
     backgroundColor: token.colorBgElevated,
@@ -48,12 +48,12 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
   return (
     <AntdLayout.Header style={headerStyles}>
       <Space>
-        <Switch
+        {/* <Switch
           checkedChildren="🌛"
           unCheckedChildren="🔆"
           onChange={() => setMode(mode === "light" ? "dark" : "light")}
           defaultChecked={mode === "dark"}
-        />
+        /> */}
         {user && (
           <Space style={{ marginLeft: "8px" }} size="middle">
             {user && <Text strong>{user.name}</Text>}
