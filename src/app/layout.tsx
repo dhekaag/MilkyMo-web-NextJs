@@ -1,26 +1,15 @@
-import { Metadata, Viewport } from "next";
+import { DashboardOutlined, TeamOutlined } from "@ant-design/icons";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
+import { authProvider } from "@providers/auth-provider";
+import { dataProvider } from "@providers/data-provider";
+import { useNotificationProvider } from "@refinedev/antd";
+import "@refinedev/antd/dist/reset.css";
+import { Refine } from "@refinedev/core";
+import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
+import routerProvider from "@refinedev/nextjs-router";
+import { Metadata } from "next";
 import { cookies } from "next/headers";
 import React, { Suspense } from "react";
-import { Refine } from "@refinedev/core";
-import { DevtoolsProvider } from "@providers/devtools";
-import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import { useNotificationProvider } from "@refinedev/antd";
-import routerProvider from "@refinedev/nextjs-router";
-import { AntdRegistry } from "@ant-design/nextjs-registry";
-import "@refinedev/antd/dist/reset.css";
-import { ColorModeContextProvider } from "@contexts/color-mode";
-import { authProvider } from "@providers/auth-provider";
-import { SITE_DESC, SITE_TITLE } from "@utils/constanst";
-import { dataProvider } from "@providers/data-provider";
-import {
-  CalendarOutlined,
-  ContainerOutlined,
-  CrownOutlined,
-  DashboardOutlined,
-  ProjectOutlined,
-  ShopOutlined,
-  TeamOutlined,
-} from "@ant-design/icons";
 
 const APP_NAME = "MilkyMo";
 const APP_DEFAULT_TITLE = "MilkyMo";
