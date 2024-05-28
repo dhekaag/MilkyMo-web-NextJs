@@ -9,9 +9,10 @@ import {
   MarkdownField,
   ShowButton,
   useTable,
+  FilterDropdown,
 } from "@refinedev/antd";
 import { BaseRecord, HttpError, useMany } from "@refinedev/core";
-import { Space, Table, Typography, Row, Col } from "antd";
+import { Space, Table, Typography, Row, Col, Radio } from "antd";
 import React, { useState, useEffect } from "react";
 import { TotalCountCard } from "./components/total-count-card";
 import { ITransactionsInterface } from "@providers/data-provider/transactions-provider";
@@ -24,6 +25,9 @@ export default function PenyetoranSusu() {
     pagination: {
       mode: "off",
     },
+    // errorNotification(error, values, resource) {
+    //   return error, values, resource;
+    // },
   });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const transactions = tableQueryResult.data?.data || [];
@@ -115,7 +119,18 @@ export default function PenyetoranSusu() {
           title={"JAM"}
           render={(createdAt) => moment(createdAt).format("HH:mm")}
         />
-        <Table.Column dataIndex="time" title={"WAKTU"} />
+        <Table.Column
+          dataIndex="time"
+          title={"WAKTU"}
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+              <Radio.Group>
+                <Radio value="Pagi">Pagi</Radio>
+                <Radio value="Sore">Sore</Radio>
+              </Radio.Group>
+            </FilterDropdown>
+          )}
+        />
         <Table.Column
           dataIndex="admin_id"
           title={"NAMA PENGURUS"}
