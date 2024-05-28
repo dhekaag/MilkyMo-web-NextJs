@@ -22,8 +22,6 @@ import {
   TeamOutlined,
 } from "@ant-design/icons";
 
-
-
 const APP_NAME = "MilkyMo";
 const APP_DEFAULT_TITLE = "MilkyMo";
 const APP_DESCRIPTION =
@@ -68,74 +66,70 @@ export default function RootLayout({
         <Suspense>
           <RefineKbarProvider>
             <AntdRegistry>
-              <ColorModeContextProvider defaultMode={defaultMode}>
-                <DevtoolsProvider>
-                  <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider}
-                    notificationProvider={useNotificationProvider}
-                    authProvider={authProvider}
-                    resources={[
-                      {
-                        name: "Penyetoran Susu",
-                        list: "/penyetoran-susu",
-                        create: "/penyetoran-susu/create",
-                        // edit: "/blog-posts/edit/:id",
-                        // show: "/blog-posts/show/:id",
-                        meta: {
-                          label: "Penyetoran Susu",
-                          icon: <DashboardOutlined />,
-                          canDelete: false,
-                        },
-                      },
-                      {
-                        name: "Stok dan Penjualan Susu",
-                        list: "/stok-penjualan-susu",
-                        create: "/stok-penjualan-susu/create",
-                        // edit: "/blog-posts/edit/:id",
-                        // show: "/blog-posts/show/:id",
-                        meta: {
-                          label: "Stok Susu",
-                          icon: <DashboardOutlined />,
-                          canDelete: false,
-                        },
-                      },
-                      {
-                        name: "Daftar Peternak",
-                        list: "/daftar-peternak",
-                        create: "/daftar-peternak/create",
-                        edit: "/daftar-peternak/edit/:id",
-                        show: "/daftar-peternak/show/:id",
-                        meta: {
-                          canDelete: true,
-                          label: "Daftar Peternak",
-                          icon: <TeamOutlined />,
-                        },
-                      },
-                      {
-                        name: "Daftar Admin",
-                        list: "/daftar-admin",
-                        create: "/daftar-admin/create",
-                        edit: "/daftar-admin/edit/:id",
-                        show: "/daftar-admin/show/:id",
-                        meta: {
-                          label: "Daftar Admin",
-                          icon: <TeamOutlined />,
-                          canDelete: true,
-                        },
-                      },
-                    ]}
-                    options={{
-                      // syncWithLocation: true,
-                      warnWhenUnsavedChanges: true,
-                      projectId: "DVmwvl-UBqF04-8TSpeC",
-                    }}
-                  >
-                    {children}
-                    <RefineKbar />
-                  </Refine>
-                </DevtoolsProvider>
-              </ColorModeContextProvider>
+              <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider}
+                notificationProvider={useNotificationProvider}
+                authProvider={authProvider}
+                resources={[
+                  {
+                    name: "Penyetoran Susu",
+                    list: "/penyetoran-susu",
+                    create: "/penyetoran-susu/create",
+                    // edit: "/blog-posts/edit/:id",
+                    // show: "/blog-posts/show/:id",
+                    meta: {
+                      label: "Penyetoran Susu",
+                      icon: <DashboardOutlined />,
+                      canDelete: false,
+                    },
+                  },
+                  {
+                    name: "Stok dan Penjualan Susu",
+                    list: "/stok-penjualan-susu",
+                    create: "/stok-penjualan-susu/create",
+                    // edit: "/blog-posts/edit/:id",
+                    // show: "/blog-posts/show/:id",
+                    meta: {
+                      label: "Stok Susu",
+                      icon: <DashboardOutlined />,
+                      canDelete: false,
+                    },
+                  },
+                  {
+                    name: "Daftar Peternak",
+                    list: "/daftar-peternak",
+                    create: "/daftar-peternak/create",
+                    edit: "/daftar-peternak/edit/:id",
+                    show: "/daftar-peternak/show/:id",
+                    meta: {
+                      canDelete: true,
+                      label: "Daftar Peternak",
+                      icon: <TeamOutlined />,
+                    },
+                  },
+                  {
+                    name: "Daftar Admin",
+                    list: "/daftar-admin",
+                    create: "/daftar-admin/create",
+                    edit: "/daftar-admin/edit/:id",
+                    show: "/daftar-admin/show/:id",
+                    meta: {
+                      label: "Daftar Admin",
+                      icon: <TeamOutlined />,
+                      canDelete: true,
+                    },
+                  },
+                ]}
+                options={{
+                  // syncWithLocation: true,
+                  warnWhenUnsavedChanges: true,
+                  projectId: "DVmwvl-UBqF04-8TSpeC",
+                }}
+              >
+                {children}
+                <RefineKbar />
+              </Refine>
             </AntdRegistry>
           </RefineKbarProvider>
         </Suspense>
